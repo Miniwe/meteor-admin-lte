@@ -21,6 +21,7 @@ Package.onUse(function(api) {
   ], 'client');
 
   api.addFiles([
+    'css/paper.bootstrap.css',
     'css/AdminLTE.min.css',
     'css/skins/skin-black-light.min.css',
     'css/skins/skin-black.min.css',

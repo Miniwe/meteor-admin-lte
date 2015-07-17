@@ -19,6 +19,7 @@ Template.AdminLTE.onCreated(function () {
 
   self.isReady = new ReactiveVar(false);
   self.style = waitOnCSS(cssUrl());
+  self.bootstrap = waitOnCSS(bootstrapUrl());
   self.skin = waitOnCSS(skinUrl(skin));
 
   fixed && $('body').addClass('fixed');
@@ -29,7 +30,7 @@ Template.AdminLTE.onCreated(function () {
   }
 
   this.autorun(function () {
-    if (self.style.ready() && self.skin.ready()) {
+    if (self.style.ready() && self.skin.ready() && self.bootstrap.ready()) {
       self.isReady.set(true);
     }
   });
@@ -38,6 +39,7 @@ Template.AdminLTE.onCreated(function () {
 Template.AdminLTE.onDestroyed(function () {
   this.removeClasses();
   this.style.remove();
+  this.bootstrap.remove();
   this.skin.remove();
 });
 
@@ -122,6 +124,10 @@ Template.AdminLTE.events({
 
 function cssUrl () {
   return Meteor.absoluteUrl('packages/mfactory_admin-lte/css/AdminLTE.min.css');
+}
+
+function bootstrapUrl () {
+  return Meteor.absoluteUrl('packages/mfactory_admin-lte/css/paper.bootstrap.css');
 }
 
 function skinUrl (name) {
